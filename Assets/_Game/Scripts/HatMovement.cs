@@ -6,6 +6,11 @@ public class HatMovement : MonoBehaviour
 {
     [SerializeField] private float speed;
 
+    private GameController gameController;
+
+    private void Start() {
+        gameController = FindObjectOfType<GameController>();
+    }
     // Update is called once per frame
     void Update()
     {
@@ -13,7 +18,7 @@ public class HatMovement : MonoBehaviour
     }
 
     private void DragTouch(){
-        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved){
+        if(Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Moved && gameController.gameStarted){
             //touchDeltaPosition - posicao do meu dedo na tela
             //speed - Velocidade
             //Time.deltaTime - normaliza a velocidade independente do FPS do celular
