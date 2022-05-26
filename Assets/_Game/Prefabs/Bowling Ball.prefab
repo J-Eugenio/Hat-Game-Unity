@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 940532182243677794}
   - component: {fileID: 262737448271932236}
   - component: {fileID: 8674887453758718785}
+  - component: {fileID: 1526676829213496336}
   m_Layer: 0
   m_Name: Bowling Ball
   m_TagString: Untagged
@@ -71,6 +72,18 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.51
+--- !u!114 &1526676829213496336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 940532182243677793}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8e8ae3a8347d804fa19b740be51f9d3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &940532182729675797
 GameObject:
   m_ObjectHideFlags: 0
