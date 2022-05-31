@@ -7,7 +7,7 @@ using TMPro;
 public class UIController : MonoBehaviour
 {
     private GameController gameController;
-    public GameObject panelMainMenu;
+    public GameObject panelMainMenu, panelGame, panelPause, panelGameOver;
 
     // Start is called before the first frame update
     void Start()
@@ -33,7 +33,32 @@ public class UIController : MonoBehaviour
     }
 
     public void BottonStart(){
-        gameController.gameStarted = true;
         panelMainMenu.gameObject.SetActive(false);
+        panelGame.gameObject.SetActive(true);
+        gameController.StartGame();
+    }
+
+    public void ButtonPause(){
+        panelGame.gameObject.SetActive(false);
+        panelPause.gameObject.SetActive(true);
+    }
+
+    public void ButtonResume(){
+        panelGame.gameObject.SetActive(true);
+        panelPause.gameObject.SetActive(false);
+    }
+
+    public void ButtonBackMainMenu(){
+        panelPause.gameObject.SetActive(false);
+        panelMainMenu.gameObject.SetActive(true);
+        panelGameOver.gameObject.SetActive(false);
+        gameController.BackMainMenu();
+    }
+
+    public void ButtonRestart(){
+        panelGame.gameObject.SetActive(true);
+        panelPause.gameObject.SetActive(false);
+        panelGameOver.gameObject.SetActive(false);
+        gameController.StartGame();
     }
 }
