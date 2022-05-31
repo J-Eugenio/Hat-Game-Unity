@@ -15,7 +15,7 @@ public class GameController : MonoBehaviour
     {
         score = 0;
         currentTime = startTimer;
-        gameStarted = true;
+        gameStarted = false;
     }
 
     // Update is called once per frame
@@ -30,12 +30,7 @@ public class GameController : MonoBehaviour
             float currentTimeToInt = Mathf.RoundToInt(currentTime);
             Debug.Log(currentTimeToInt);
         } else {
-            gameStarted = false;
-            currentTime = 0f;
             return;
         }
-
-        
-        
     }
 }
