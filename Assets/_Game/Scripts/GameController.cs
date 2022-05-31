@@ -4,15 +4,22 @@ using UnityEngine;
 
 public class GameController : MonoBehaviour
 {
-    public int score, highScore;
+    [HideInInspector] public int score;
 
-    public float currentTime;
+    private int highScore;
+
+    private float currentTime;
+
     [SerializeField] private float startTimer;
 
-    public bool gameStarted;
+    [HideInInspector] public bool gameStarted;
 
     private UIController uiController;
 
+    private SpawnController spawnController;
+
+    [SerializeField] private Transform player;
+    private Vector2 playerPosition;
     private void Awake(){
          DeleteHighScore();
     }
@@ -22,7 +29,16 @@ public class GameController : MonoBehaviour
     {
         gameStarted = false;
         uiController = FindObjectOfType<UIController>();
+        spawnController = FindObjectOfType<SpawnController>();
         highScore = GetScore();
+        uiController.txtTime.text = currentTime.ToString();
+        playerPosition = player.position;
+    }
+
+    public void DestroyAllBalls(){
+        foreach (Transform child in spawnController.allBallsParent) {
+            Destroy(child.gameObject);
+        }
     }
 
     public void SaveScore(){
@@ -50,6 +66,7 @@ public class GameController : MonoBehaviour
         currentTime = startTimer;
         gameStarted = true;
         InvokeCountDownTime();
+        player.position = playerPosition;
     }
 
     public void BackMainMenu(){
@@ -57,12 +74,15 @@ public class GameController : MonoBehaviour
         currentTime = 0f;
         gameStarted = false;
         CancelInvoke("CountdownTime");
+        player.position = playerPosition;
     }
 
     public void InvokeCountDownTime(){
         InvokeRepeating("CountdownTime", 1f, 1f);
     }
     public void CountdownTime(){
+        uiController.txtTime.text = currentTime.ToString();
+
         if(currentTime > 0f && gameStarted){
             currentTime -= 1f;
         } else {
